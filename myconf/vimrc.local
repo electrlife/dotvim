@@ -1,0 +1,163 @@
+if filereadable(expand("~/.vim/myconf/amix/vimrcs/basic.vim"))
+    source ~/.vim/myconf/amix/vimrcs/basic.vim
+endif
+
+" 'cscopequickfix' specifies whether to use quickfix window to show cscope
+" results.  This is a list of comma-separated values. Each item consists of
+" |cscope-find| command (s, g, d, c, t, e, f or i) and flag (+, - or 0).
+" '+' indicates that results must be appended to quickfix window,
+" '-' implies previous results clearance, '0' or command absence - don't use
+" quickfix.  Search is performed from start until first command occurrence.
+" The default value is "" (don't use quickfix anyway).  The following value
+" seems to be useful:
+"     :set cscopequickfix=s-,c-,d-,i-,t-,e-
+" Not available when compiled without the |+quickfix| feature
+set cscopequickfix=s-,g-,c-,d-,i-,t-,e-
+
+"                                                         cscopetag cst
+" If 'cscopetag' is set, the commands ":tag" and CTRL-] as well as "vim -t"
+" will always use :cstag instead of the default :tag behavior.  Effectively,
+" by setting 'cst', you will always search your cscope databases as well as
+" your tag files.  The default is off.  Examples:
+"       :set cst
+"       :set nocst
+set cscopetag
+
+" To use the default key/mouse mapping:
+"       let GtagsCscope_Auto_Map = 1
+" To ignore letter case when searching:
+"       let GtagsCscope_Ignore_Case = 1
+" To use absolute path name:
+"       let GtagsCscope_Absolute_Path = 1
+" To deterring interruption:
+"       let GtagsCscope_Keep_Alive = 1
+" If you hope auto loading:
+let g:GtagsCscope_Auto_Load = 1
+
+" Quiet if load gtags failed during vim booting, but reopen the feature after
+" vim booted
+let g:GtagsCscope_Quiet     = 1
+
+if has("autocmd")
+    autocmd VimEnter * let g:GtagsCscope_Quiet = 0
+endif
+
+" The following key mappings are derived from 'cscope_maps.vim'.
+" (The 'd' command is not implemented in gtags-cscope.)
+"
+" normal command
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" Using 'CTRL-spacebar', the result is displayed in new horizontal window.
+nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :scs find i <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+" Hitting CTRL-space *twice*, the result is displayed in new vertical window.
+nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+
+nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@><C-@>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>
+"nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+" Short cut key
+nmap <C-\><SPACE> :cs find<SPACE>
+nmap <C-@><SPACE> :scs find<SPACE>
+nmap <C-@><C-@><SPACE> :vert scs find<SPACE>
+
+" Custom key maps
+nnoremap <silent> <F9> :TagbarToggle<CR>
+nmap <leader>bg :TagbarToggle<CR>
+nmap <leader>bn :NERDTreeToggle<CR>
+
+" Open the current file in clion/pycharm
+nmap <leader>gc :AsyncRun! clion %\:<C-R>=line(".")<CR><CR>
+nmap <leader>gp :AsyncRun! charm %\:<C-R>=line(".")<CR><CR>
+
+nmap <leader>gv :vertical terminal<CR>
+nmap <leader>gt :terminal<CR>
+nmap <leader>cl :cclose<cr>
+
+" With this variable you can set the icons to characters of your liking.
+" The first character in the list specifies the icon to use for a closed fold,
+" and the second one for an open fold. Examples (don't worry if some of the
+" characters aren't displayed correctly, just choose other characters in that case):
+let g:tagbar_iconchars = ['+', '-']
+
+" set the option to open it on the left
+" let g:tagbar_left = 1
+
+" The maximum number of files to scan, set to 0 for no limit: >
+let g:ctrlp_max_files = 100000
+
+" table-mode, to get ReST-compatible tables use
+let g:table_mode_corner_corner='+'
+let g:table_mode_header_fillchar='='
+let g:table_mode_auto_align=0
+
+" Disable Folding or not
+" - 0: Enable it.
+" - 1: Disable it.
+let g:riv_disable_folding=1
+
+" Enable the feature highline the current cursor line
+set cursorline
+
+" Tabstop toggle between 8 and 4
+nmap <leader>b8 :execute TabstopToggle()<CR>
+function TabstopToggle()
+  if &g:tabstop == 4
+    set shiftwidth=8
+    set tabstop=8
+  else
+    set shiftwidth=4
+    set tabstop=4
+  endif
+endfunction
+
+" Backgroud toggle between light and dark
+nmap <leader>bl :execute BackgroundToggle()<CR>
+function BackgroundToggle()
+  if &g:background == g:dark
+    set background=light
+  else
+    set background=dark
+  endif
+endfunction
+
+if filereadable(expand("~/.vim/myconf/amix/vimrcs/extended.vim"))
+    source ~/.vim/myconf/amix/vimrcs/extended.vim
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" enable true color
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("termguicolors")
+    set termguicolors
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+unmap <leader>e
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Turn persistent undo on
+"    means that you can undo even when you close a buffer/VIM
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+try
+    set undodir=~/.vim/temp_dirs/undodir
+    set undofile
+catch
+endtry
