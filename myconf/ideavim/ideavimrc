@@ -1,0 +1,66 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable features
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set clipboard      " 'cb'    clipboard options
+set history=1000   " 'hi'    number of command-lines that are remembered
+set hlsearch       " 'hls'   highlight matches with last search pattern
+set ignorecase     " 'ic'    ignore case in search patterns
+set incsearch      " 'is'    show where search pattern typed so far matches
+set showmode       " 'smd'   message on status line to show current mode
+set smartcase      " 'scs'   no ignore case when pattern has uppercase
+set viminfo        " 'vi'    information to remember after restart
+
+set vim-multiple-cursors
+set vim-surround
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Key maps
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap ,ga    :action GotoAction<CR>
+nnoremap ,gc    :action GotoClass<CR>
+nnoremap ,gf    :action GotoFile<CR>
+nnoremap ,gs    :action GotoSymbol<CR>
+nnoremap ,bg    :action FileStructurePopup<CR>
+nnoremap ,gv    :action Terminal.OpenInTerminal<CR>
+nnoremap ,gm    :action Tool_External Tools_Open in Vim<CR>
+
+vnoremap ,ga    :action GotoAction<CR>
+vnoremap ,gc    :action GotoClass<CR>
+vnoremap ,gf    :action GotoFile<CR>
+vnoremap ,gs    :action GotoSymbol<CR>
+vnoremap ,bg    :action FileStructurePopup<CR>
+vnoremap ,gv    :action Terminal.OpenInTerminal<CR>
+vnoremap ,gm    :action Tool_External Tools_Open in Vim<CR>
+
+vnoremap  gc    :action CommentByBlockComment<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TODO:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nnoremap ,tn    gt
+" nnoremap ,tp    gT
+" action ToggleFullScreen
+" action WelcomeScreen.Settings
+" action ShowFilePath<CR>
+" action ShowPopupMenu<CR>
+" set visualbell     " 'vb'    use visual bell instead of beeping
+" set wrapscan       " 'ws'    searches wrap around the end of the file
+" set digraph        " 'dg'    enable the entering of digraphs in Insert mode
+" set gdefault       " 'gd'    the ":substitute" flag 'g' is default on
+" set iskeyword      " 'isk'   defines keywords for commands like 'w', '*', etc.
+" set matchpairs     " 'mps'   pairs of characters that "%" can match
+" set nrformats      " 'nf'    number formats recognized for CTRL-A command
+" set number         " 'nu'    print the line number in front of each line
+" set relativenumber " 'rnu'   show the line number relative to the line with the cursor
+" set scroll         " 'scr'   lines to scroll with CTRL-U and CTRL-D
+" set scrolljump     " 'sj'    minimum number of lines to scroll
+" set scrolloff      " 'so'    minimum nr. of lines above and below cursor
+" set selection      " 'sel'   what type of selection to use
+" set sidescroll     " 'ss'    minimum number of columns to scroll horizontal
+" set sidescrolloff  " 'siso'  min. nr. of columns to left and right of cursor
+" set timeout        " 'to'    use timeout for mapped key sequences
+" set timeoutlen     " 'tm'    time that is waited for a mapped key sequence
+" set undolevels     " 'ul'    maximum number of changes that can be undone
