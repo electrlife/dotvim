@@ -1,0 +1,13 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => THIS IS .vimrc Don't edit, vimrc.local instead of customization
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if filereadable(expand("~/.vim/myconf/vimrc.local"))
+    source ~/.vim/myconf/vimrc.local
+endif
+
+if has('gui_running')
+    if filereadable(expand("~/.vim/myconf/gvimrc.local"))
+        source ~/.vim/myconf/gvimrc.local
+    endif
+endif
